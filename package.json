@@ -16,5 +16,10 @@
   "bugs": {
     "url": "https://github.com/ssoulfly/basic-discord/issues"
   },
-  "homepage": "https://github.com/ssoulfly/basic-discord#readme"
+  "homepage": "https://github.com/ssoulfly/basic-discord#readme",
+  "devDependencies": {
+    "sass": "^1.69.0",
+    "sass-loader": "^13.3.2",
+    "webpack": "^5.88.2"
+  }
 }

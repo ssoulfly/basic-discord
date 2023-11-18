@@ -1,28 +1,28 @@
 <script setup>
-import { defineProps } from "vue";
+import { defineProps, ref, watch, defineEmits } from "vue";
 
-const props = defineProps([
-  "modelValue",
-  "label",
-  "required",
-  "type",
-  "bottom",
-]);
+const props = defineProps(["modelValue", "required", "type", "bottom"]);
+const emit = defineEmits(["input"]);
+const value = ref(props.modelValue);
+
+watch(value, (newVal) => emit("input", newVal));
+watch(props, (newVal) => {
+  if (newVal.modelValue !== value.value) {
+    value.value = newVal.modelValue;
+  }
+});
 </script>
 
 <template>
   <div id="discord-input" :class="[props.bottom && 'margin-have']">
-    <div class="label" v-if="props.label">
-      {{ props.label }}<span class="required" v-if="props.required">*</span>
-    </div>
     <input
-      v-model="props.modelValue"
+      v-model="value"
       class="input"
       v-if="(props.type || 'text') == 'text'"
       type="text"
       :required="props.required" />
     <input
-      v-model="props.modelValue"
+      v-model="value"
       class="input"
       v-if="props.type == 'password'"
       type="password"

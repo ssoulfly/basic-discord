@@ -1,8 +1,16 @@
 <script setup>
 import Input from "../components/Input.vue";
 import Button from "../components/Button.vue";
+import Label from "../components/Label.vue";
 import Background from "../components/svg/Background.vue";
-const selam = "asd";
+import { useRouter, useRoute } from "vue-router";
+const router = useRouter();
+
+const selam = "";
+
+const goRegisterPage = () => {
+  router.push("/register");
+};
 </script>
 
 <template>
@@ -16,24 +24,19 @@ const selam = "asd";
         </div>
         <div class="form">
           <div class="input-item">
-            <Input
-              v-model="selam"
-              label="Email or Phone Number"
-              :required="true"
-              :bottom="true" />
+            <Label text="Email or Phone Number" :required="true" />
+            <Input v-model="selam" :required="true" :bottom="true" />
           </div>
           <div class="input-item">
-            <Input
-              v-model="selam"
-              label="Password"
-              :required="true"
-              :type="'password'" />
+            <Label text="Password" :required="true" />
+            <Input v-model="selam" :required="true" :type="'password'" />
             <div class="link-text">Forget your password?</div>
           </div>
           <div class="input-item">
             <Button text="Log In" />
             <div class="register">
-              Need an account? <span class="link-text">Register</span>
+              Need an account?
+              <span class="link-text" @click="goRegisterPage">Register</span>
             </div>
           </div>
         </div>
@@ -79,7 +82,7 @@ const selam = "asd";
   </div>
 </template>
 
-<style>
+<style scoped>
 #discord-login {
   background: #5865f2;
   width: 100vw;
@@ -152,7 +155,7 @@ const selam = "asd";
   font-weight: 500;
   font-size: 24px;
   line-height: 30px;
-  color: #ffffff;
+  color: #f2f3f5;
 }
 #discord-login .login-card .login-form .content {
   color: #b3b8bf;
@@ -188,7 +191,6 @@ const selam = "asd";
   font-size: 16px;
   line-height: 20px;
   margin-top: 6px;
-  
 }
 
 @media (max-width: 1000px) {
