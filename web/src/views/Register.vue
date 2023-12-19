@@ -26,6 +26,45 @@ const changeInput = (val) => {
   console.log(val);
   selam.value = val;
 };
+
+const days = ref([
+  {
+    key: "01",
+    text: "January",
+  },
+  { key: "02", text: "February" },
+  {
+    key: "03",
+    text: "March",
+  },
+  { key: "04", text: "April" },
+  {
+    key: "05",
+    text: "May",
+  },
+  { key: "06", text: "June" },
+  {
+    key: "07",
+    text: "July",
+  },
+  { key: "08", text: "August" },
+  {
+    key: "09",
+    text: "September",
+  },
+  { key: "10", text: "October" },
+  {
+    key: "11",
+    text: "November",
+  },
+  { key: "12", text: "December" },
+]);
+const years = () => {
+  const nowYear = new Date().getFullYear() - 14;
+  return new Array(120)
+    .fill("")
+    .map((_, i) => ({ key: nowYear - i, text: nowYear - i }));
+};
 </script>
 
 <template>
@@ -74,51 +113,21 @@ const changeInput = (val) => {
               <Select
                 v-model="registerForm.day"
                 place-holder="Day"
-                :data="[
-                  {
-                    key: '01',
-                    text: 'January',
-                  },
-                  { key: '02', text: 'February' },
-                  {
-                    key: '03',
-                    text: 'March',
-                  },
-                  { key: '04', text: 'April' },
-                  {
-                    key: '05',
-                    text: 'May',
-                  },
-                  { key: '06', text: 'June' },
-                  {
-                    key: '07',
-                    text: 'July',
-                  },
-                  { key: '08', text: 'August' },
-                  {
-                    key: '09',
-                    text: 'September',
-                  },
-                  { key: '10', text: 'October' },
-                  {
-                    key: '11',
-                    text: 'November',
-                  },
-                  { key: '12', text: 'December' },
-                ]"
+                :data="days"
                 @select="(v) => (registerForm.day = v)" />
-              <Select v-model="registerForm.month" place-holder="Month" :data="
-              new Array(31) .fill('') .map((_, i) => ({ key: i + 1, text: i + 1
-              })) " @select="(v) => (registerForm.month = v)" />
+              <Select
+                v-model="registerForm.month"
+                place-holder="Month"
+                :data="
+                  new Array(31)
+                    .fill('')
+                    .map((_, i) => ({ key: i + 1, text: i + 1 }))
+                "
+                @select="(v) => (registerForm.month = v)" />
               <Select
                 v-model="registerForm.year"
                 place-holder="Year"
-                :data="[
-                  {
-                    key: 'sa',
-                    text: 'xdd',
-                  },
-                ]"
+                :data="years()"
                 @select="(v) => (registerForm.year = v)" />
             </div>
           </div>

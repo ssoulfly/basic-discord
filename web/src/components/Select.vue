@@ -11,9 +11,15 @@ const props = defineProps([
 
 const emit = defineEmits(["select", "input"]);
 
+const selectItems = ref(null);
 const dropdown = ref(false);
 const items = ref(props.data || []);
 
+document.addEventListener("click", (e) => {
+  if (!selectItems.value.contains(e.target)) {
+    dropdown.value = false;
+  }
+});
 const clone = items.value.reduce((acc, item) => {
   acc[item.key] = item.text;
   return acc;
@@ -42,7 +48,7 @@ const onSelect = (item) => {
 </script>
 
 <template>
-  <div id="discord-select">
+  <div id="discord-select" ref="selectItems">
     <div class="select-items" v-if="dropdown && items.length <= 0">
       <div class="select-item">{{ "No data found" }}</div>
     </div>
@@ -55,16 +61,15 @@ const onSelect = (item) => {
         {{ item.text }}
       </div>
     </div>
-    <div class="select-input" @click="dropdown = !dropdown" >
+    <div class="select-input" @click="dropdown = !dropdown">
       <input
         v-model="searchItem"
         class="input"
         type="text"
         :required="props.required"
         @input="onSearch"
-        :placeholder="selectItem ? clone[selectItem] : placeHolder" 
-        />
-      <span class="down-item material-icons" > expand_more </span>
+        :placeholder="selectItem ? clone[selectItem] : placeHolder" />
+      <span class="down-item material-icons"> expand_more </span>
     </div>
   </div>
 </template>
@@ -79,7 +84,7 @@ const onSelect = (item) => {
   .select-items {
     background-color: #313338;
     position: absolute;
-    top: 38px;
+    bottom: 100%;
     color: white;
     max-height: 200px;
     width: calc(100% - 2px);

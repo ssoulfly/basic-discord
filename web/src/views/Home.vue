@@ -1,18 +1,23 @@
 <script setup>
-import Button from "../components/Button.vue";
 import Input from "../components/Input.vue";
+import Button from "../components/Button.vue";
 import Label from "../components/Label.vue";
-import Select from "../components/Select.vue";
+import Background from "../components/svg/Background.vue";
+import { useRouter, useRoute } from "vue-router";
+const router = useRouter();
+
+const selam = "";
+
+const goRegisterPage = () => {
+  router.push("/register");
+};
 </script>
+
 <template>
-  <div>
-    <Label text="Selam" />
-    <Label text="Selam" :required="true" />
-    <Input v-model="selam" :required="true" :bottom="true" />
-    <Input v-model="selam" :required="true" />
-    <Button text="Log In" />
-    <div style="padding: 100px">
-      <Select place-holder="Day"/>
-    </div>
+  <div id="discord-home">
+    
   </div>
 </template>
+
+<style scoped>
+</style>

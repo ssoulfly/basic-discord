@@ -1,12 +1,14 @@
-@import url("./colors.css");
 :root  {
   --font-family: "gg sans", "Noto Sans", "Helvetica Neue", Helvetica, Arial,
     sans-serif;
   --base-color: #5865f2;
+  --background-secondry: #313338;
 }
 
 body {
   margin: 0;
+  font-family: "gg sans", "Noto Sans", "Helvetica Neue", Helvetica, Arial,
+    sans-serif;
 }
 
 ::-webkit-scrollbar {
